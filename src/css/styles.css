@@ -15,11 +15,9 @@
   color: #2e2f42;
   font-family: 'Montserrat', sans-serif;
 }
-
 input {
   outline: none;
 }
-
 ul {
   list-style: none;
 }
@@ -30,7 +28,6 @@ ul {
   align-items: center;
   padding: 36px 0 32px;
 }
-
 .input-search {
   border: 1px solid #808080;
   border-radius: 4px;
@@ -42,17 +39,15 @@ ul {
   padding: 7px 16px;
   margin-right: 8px;
 }
-
 .input-search:hover {
   border-color: #000;
 }
-
 .input-search:focus {
   border-color: #4e75ff;
   color: #000;
 }
-
-.button-search {
+.button-search,
+.button-search-more {
   border-radius: 8px;
   padding: 8px 16px;
   width: 91px;
@@ -66,11 +61,16 @@ ul {
   padding: 8px 16px;
   cursor: pointer;
 }
-
-.button-search:hover {
+.button-search:hover,
+.button-search-more:hover {
   background: #6c8cff;
 }
-
+.button-search-more {
+  width: fit-content;
+  margin: 32px auto;
+  display: flex;
+  visibility: hidden;
+}
 .gallery {
   display: flex;
   justify-content: center;
@@ -79,16 +79,13 @@ ul {
   flex-wrap: wrap;
   gap: 24px;
 }
-
 .gallery-item {
   border: 1px solid #808080;
   width: 360px;
 }
-
 .gallery-image {
   width: 100%;
 }
-
 .list-info {
   display: flex;
   justify-content: center;
@@ -102,12 +99,12 @@ ul {
   line-height: 1.33333;
   letter-spacing: 0.04em;
 }
-
 .count-info {
   font-size: 12px;
   line-height: 2;
   letter-spacing: 0.04em;
 }
+
 
 .loader {
   position: absolute;
