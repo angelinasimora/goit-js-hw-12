@@ -191,6 +191,13 @@ ul {
   }
 }
 
+
+.iziToast {
+  width: auto;
+  max-width: 400px;
+  margin: 0 auto;
+    padding: 10px 20px;
+}
 /* Стилі для повідомлення із рожевим фоном */
 .heart-toast {
   position: relative;
