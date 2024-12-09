@@ -18,10 +18,26 @@ let lightbox = new SimpleLightbox('.galery a', {
   captionDelay: 250,
 });
 
+
 iziToast.settings({
   timeout: 4000,
   position: 'topRight',
 });
+
+iziToast.show({
+  title: 'Hey!',
+  message: 'What are you looking?',
+   backgroundColor: '#ffffff', 
+  messageColor: '#000', 
+  titleColor: '#000', 
+  iconColor: '#ffffff',
+  timeout: 7000,
+  onOpening: function() {
+    const toastElement = document.querySelector('.iziToast');
+    toastElement.classList.add('heart-toast');
+  }
+});
+
 
 let page = 1;
 let perPage = 15;

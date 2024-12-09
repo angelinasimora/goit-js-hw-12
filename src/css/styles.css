@@ -86,6 +86,7 @@ ul {
 .gallery-image {
   width: 100%;
 }
+
 .list-info {
   display: flex;
   justify-content: center;
@@ -187,5 +188,55 @@ ul {
   100% {
     box-shadow: 30px 0 0 #fff;
     margin-top: 0;
+  }
+}
+
+/* Стилі для повідомлення із рожевим фоном */
+.heart-toast {
+  position: relative;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  /* Округлі краї */
+  top: 20px;
+}
+
+/* Стилі для сердечок */
+.heart-toast::before,
+.heart-toast::after {
+  content: "❤️";
+  position: absolute;
+  font-size: 30px;
+  color: #ff66b2;
+  animation: heartAnimation 1.5s ease-in-out infinite;
+}
+
+.heart-toast::before {
+  top: -30px;
+  left: -30px;
+}
+
+.heart-toast::after {
+  bottom: -30px;
+  right: -30px;
+}
+
+/* Анімація для сердечок */
+@keyframes heartAnimation {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
