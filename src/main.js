@@ -25,17 +25,13 @@ iziToast.settings({
 });
 
 iziToast.show({
-  title: 'Hey!',
+  title: 'Hey⭐️',
   message: 'What are you looking?',
    backgroundColor: '#ffffff', 
   messageColor: '#000', 
   titleColor: '#000', 
   iconColor: '#ffffff',
   timeout: 7000,
-  onOpening: function() {
-    const toastElement = document.querySelector('.iziToast');
-    toastElement.classList.add('heart-toast');
-  }
 });
 
 
