@@ -195,9 +195,16 @@ ul {
 .iziToast {
   width: auto;
   max-width: 400px;
-  margin: 0 auto;
-    padding: 10px 20px;
+  margin: 0;
+  padding: 10px 20px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+
+  z-index: 9999;
+
 }
+
 /* Стилі для повідомлення із рожевим фоном */
 .heart-toast {
   position: relative;
@@ -206,8 +213,7 @@ ul {
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  /* Округлі краї */
-  top: 20px;
+  background-color: #ff66b2;
 }
 
 /* Стилі для сердечок */
