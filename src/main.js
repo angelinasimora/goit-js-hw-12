@@ -40,10 +40,11 @@ let perPage = 15;
 let searchText = '';
 let totalPages = 0;
 
-const functionSearch = first => {
+const functionSearch = (first) => {
   if (first) {
     page = 1;
   }
+
   searchImage(searchText, page, perPage)
     .then(({ hits, totalHits }) => {
       totalPages = Math.ceil(totalHits / perPage);
@@ -69,41 +70,48 @@ const functionSearch = first => {
         });
         loader.style.display = 'none';
         gallery.innerHTML = '';
+        return; // Вихід, якщо немає результатів
       }
-
-      page += 1;
 
       first
         ? (gallery.innerHTML = images)
         : gallery.insertAdjacentHTML('beforeend', images);
+
+      // Інкрементація тільки якщо завантажено результати
+      page += 1;
+
+      if (page > totalPages) {
+        loader.style.display = 'none';
+        buttonLoadMore.style.visibility = 'hidden';
+
+        if (totalPages > 0) {
+          iziToast.info({
+            iconColor: '#fff',
+            imageWidth: 24,
+            messageColor: '#fff',
+            message: "We're sorry, but you've reached the end of search results.",
+          });
+        }
+
+        return; // Вихід, якщо досягнуто кінця результатів
+      }
+
       buttonLoadMore.style.visibility = 'visible';
       buttonLoadMore.style.display = 'block';
 
-      if (page + 1 > totalPages) {
-        loader.style.display = 'none';
-        buttonLoadMore.style.visibility = 'hidden';
-        if (totalPages === 0) return;
-
-        return iziToast.info({
-          iconColor: '#fff',
-          imageWidth: 24,
-          messageColor: '#fff',
-          message: "We're sorry, but you've reached the end of search results.",
+      const imageCard = document.querySelector('.gallery-item');
+      if (imageCard) {
+        const { y } = imageCard.getBoundingClientRect();
+        window.scrollBy({
+          top: -y * 2,
+          behavior: 'smooth',
         });
       }
-
-      const imageCard = document.querySelector('.gallery-item');
-      const { y } = imageCard.getBoundingClientRect();
-
-      window.scrollBy({
-        top: -y * 2,
-        behavior: 'smooth',
-      });
 
       lightbox.refresh();
       form.reset();
     })
-    .catch(error => {
+    .catch((error) => {
       loader.style.display = 'none';
       gallery.innerHTML = '';
       iziToast.error({
@@ -116,7 +124,7 @@ const functionSearch = first => {
     });
 };
 
-const createGalary = e => {
+const createGalary = (e) => {
   e.preventDefault();
   gallery.innerHTML = '';
   loader.style.display = 'block';
@@ -135,14 +143,16 @@ const createGalary = e => {
     return;
   }
 
-  functionSearch('first');
+  functionSearch(true);
+    e.target.elements.search.value = '';
+
 };
+
 const addItemInGallery = () => {
   buttonLoadMore.style.display = 'none';
   loader.style.display = 'block';
   section.insertAdjacentElement('beforeend', loader);
-  //setTimeout(() => functionSearch(), 1000);
-  functionSearch();
+  functionSearch(false);
 };
 
 form.addEventListener('submit', createGalary);
