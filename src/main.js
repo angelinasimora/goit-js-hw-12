@@ -13,7 +13,7 @@ const loader = document.querySelector('.loader');
 const buttonLoadMore = document.querySelector('.button-search-more');
 const section = document.querySelector('section');
 
-let lightbox = new SimpleLightbox('.galery a', {
+let lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
@@ -144,16 +144,17 @@ const createGalary = (e) => {
   }
 
   functionSearch(true);
-    e.target.elements.search.value = '';
+  e.target.elements.search.value = '';
+  
 
 };
 
 const addItemInGallery = () => {
-  buttonLoadMore.style.display = 'none';
-  loader.style.display = 'block';
-  section.insertAdjacentElement('beforeend', loader);
-  functionSearch(false);
+  loader.style.display = 'block'; // Показуємо лоадер перед запитом
+  buttonLoadMore.style.display = 'none'; // Ховаємо кнопку, щоб уникнути повторного кліку
+  functionSearch(false); // Викликаємо функцію пошуку
 };
 
+
 form.addEventListener('submit', createGalary);
-buttonLoadMore.addEventListener('click', addItemInGallery);
+buttonLoadMore.addEventListener('click', addItemInGallery); 
